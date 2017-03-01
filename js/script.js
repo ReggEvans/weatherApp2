@@ -6,7 +6,7 @@ var googleURL = 'https://maps.googleapis.com/maps/api/geocode/json?address='
 var reverseGoogle = 'https://maps.googleapis.com/maps/api/geocode/json?latlng='
 
 //************************************************************************************
-//Query Selectors
+//QUERY SELECTORS
 //************************************************************************************
 var currentLinkNode = document.querySelector('#switch-current')
 var dailyLinkNode = document.querySelector('#switch-daily')
@@ -28,7 +28,7 @@ searchFieldNode.addEventListener('keydown', inputSearch)
 window.addEventListener('hashchange', getLocation)
 
 //************************************************************************************
-//Controller Function
+//BACKBONE ROUTER
 //************************************************************************************
 var WeatherRouter = Backbone.Router.extend({
 	routes: {
@@ -57,8 +57,6 @@ var WeatherRouter = Backbone.Router.extend({
 		weatherPromise.then(handleHourlyResponse)
 	},
 })
-
-
 
 //************************************************************************************
 //HANDLE COORDS OBJECT FUNCTION
@@ -155,7 +153,7 @@ function handleDailyResponse(weatherObj) {
 function handleHourlyResponse(weatherObj) {
 	var weatherHTMLString = ''
 	var i = 1
-		while (i < 7) {
+	while (i < 7) {
 		weatherHTMLString += ''
 		weatherHTMLString += '<div id="list">'
 		weatherHTMLString += 	'<div id="list-icon">'
@@ -172,13 +170,13 @@ function handleHourlyResponse(weatherObj) {
 		weatherHTMLString += 	'</div>'
 		weatherHTMLString += '</div>'
 		i++
-		} 
+	} 
 	hourlyNode.innerHTML = weatherHTMLString
 	animateHourlyIcons(weatherObj)
 }
 
 //************************************************************************************
-//WEATHER ICONS
+//ANIMATED WEATHER ICONS
 //************************************************************************************
 function animateCurrentIcons(weatherObj) {
 	var skycons = new Skycons({"color": "white"})
@@ -192,7 +190,7 @@ function animateDailyIcons(weatherObj) {
 	while (i < 7) {
 	  	skycons.add(document.getElementById("daily-icon" + i ), weatherObj.daily.data[i].icon)
 	  	i++
-  }
+	}
   	skycons.play()
 }
 
@@ -202,7 +200,7 @@ function animateHourlyIcons(weatherObj) {
 	while (i < 7) {
 	  	skycons.add(document.getElementById("hourly-icon" + i), weatherObj.hourly.data[i].icon)
 	  	i++
-  }
+    }
   	skycons.play()
 }
 
@@ -211,13 +209,9 @@ function animateHourlyIcons(weatherObj) {
 //************************************************************************************
 function inputSearch(e) {
 	if (e.keyCode === 13) {
-	    //create an li element: method one - set user text as li's text content, as told by amanda. method two - 
 	    var targetValue = e.target.value
-	    
 	    var googlePromise  = $.getJSON(googleURL + targetValue)
-
 	    googlePromise.then(handleGoogleResponse)
-
 	    e.target.value = ''
 	}
 }
@@ -237,9 +231,7 @@ function getLocation() {
 	var hashStr = location.hash.substr(1),
 		hashSplit = hashStr.split('/')
 		newStr = hashSplit[0] + ',' + hashSplit[1]
-	
 	var reverseGooglePromise  = $.getJSON(reverseGoogle + newStr)
-
 	reverseGooglePromise.then(handleReverseGoogleResponse)
 }
 
@@ -253,11 +245,10 @@ function handleReverseGoogleResponse(coordsObj) {
 //************************************************************************************
 //HIDE GIF FUNCTION
 //************************************************************************************
-function hideGif() { // hides loading gif once bills are displayed
+function hideGif() { // hides loading gif once weather is displayed
     var loadingIcon = document.querySelector('.spinner')
     loadingIcon.style.display = 'none'
 }
-
 
 
 var rtr = new WeatherRouter()
