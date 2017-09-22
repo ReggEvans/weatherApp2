@@ -6,14 +6,16 @@ All Styles
 	margin: 0;
 }
 
-html, body{
-   padding:0px;
-   margin:0px;
-   	background: url('../images/landscape.jpg') center center fixed;
-   font-family: 'Lato', sans-serif;
-   color:#fff;
-   text-shadow: 1px 1px #000;
+body {
+  padding:0px;
+  margin:20px;
+  background: url('../images/landscape.jpg')  no-repeat;
+  font-family: 'Lato', sans-serif;
+  color:#fff;
+  text-shadow: 1px 1px #000;
+  background-color: #000;
 }
+
 
 /* *******************************
 Search Field
@@ -81,16 +83,16 @@ input[name=switch]:checked + label{
    text-shadow: none;
 }
 
-#switch-current + label { 
-	right:20%; 
+#switch-current + label {
+	right:20%;
 }
 
-#switch-daily + label { 
-	right:10%; 
+#switch-daily + label {
+	right:10%;
 }
 
-#switch-hourly + label { 
-	right:0%; 
+#switch-hourly + label {
+	right:0%;
 }
 
 /* *******************************
@@ -98,7 +100,7 @@ Current, Daily, and Hourly Containers
 ********************************** */
 .weather-container{
    position:absolute;
-   width:600px;
+   width:100%;
    /*height:500px;*/
    background: rgba(0, 0, 0, 0.2)
    border-radius:5px;
@@ -132,20 +134,20 @@ Shuffle Effect Styling
 
 #switch-hourly:checked + label + .weather-container *,
 #switch-current:checked + label + .weather-container *,
-#switch-daily:checked + label + .weather-container * { 
+#switch-daily:checked + label + .weather-container * {
 	opacity: 1;
 }
 
 #switch-hourly + label + .weather-container *,
 #switch-current + label + .weather-container *,
-#switch-daily + label + .weather-container * { 
-	opacity:0; 
-	transition: 2s all; 
+#switch-daily + label + .weather-container * {
+	opacity:0;
+	transition: 2s all;
 }
 
-@keyframes top{ from, to { 
-	z-index: 2; 
-	} 
+@keyframes top{ from, to {
+	z-index: 2;
+	}
 }
 
 @keyframes moveout{
@@ -252,7 +254,7 @@ Loading GIF
   width: 5px;
   display: inline-block;
   margin-top: 200px;
-  
+
   -webkit-animation: sk-stretchdelay 1.2s infinite ease-in-out;
   animation: sk-stretchdelay 1.2s infinite ease-in-out;
 }
@@ -278,15 +280,15 @@ Loading GIF
 }
 
 @-webkit-keyframes sk-stretchdelay {
-  0%, 40%, 100% { -webkit-transform: scaleY(0.4) }  
+  0%, 40%, 100% { -webkit-transform: scaleY(0.4) }
   20% { -webkit-transform: scaleY(1.0) }
 }
 
 @keyframes sk-stretchdelay {
-  0%, 40%, 100% { 
+  0%, 40%, 100% {
     transform: scaleY(0.4);
     -webkit-transform: scaleY(0.4);
-  }  20% { 
+  }  20% {
     transform: scaleY(1.0);
     -webkit-transform: scaleY(1.0);
   }
